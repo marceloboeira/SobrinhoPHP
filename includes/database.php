@@ -13,7 +13,7 @@ Class Database {
     public function __construct(){
         //define váriaveis globais da classe
         $this->host = 'localhost';//host | padrão 'localhost'
-        $this->dtbs = 'db_ong';   //banaco de dados | nome do banco
+        $this->dtbs = 'db_name';   //banaco de dados | nome do banco
         $this->user = 'root';     //usuário banco de dados mysql
         $this->pswd = '';         //senha do banco, se não houver senha deixar string vazia
     }
