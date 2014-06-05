@@ -33,7 +33,7 @@ function carrega_estilos(){
         echo "<!-- NENHUM ESTILO -->\n";
     }
 }
-function paginaGET(){
+function carrega_pagina(){
     if(isset($_GET)){
         $_page = '';
         foreach(array_reverse($_GET) as $page => $ignore){

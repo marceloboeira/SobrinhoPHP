@@ -7,15 +7,23 @@
  * 
  */
 $config = array(
+	'projeto'	=>  'SobrinhoPHP',			//Não Editar
     'titulo'    =>  'Site de WEB2',         //Define nome do título do site
     'descricao' =>  'Descrição do site',    //Define descrição do site
+
+    'banco' => array ('host'	=>'localhost', //Define servicor do banco de dados
+    				  'banco'	=> 'meubanco', //Define nome do banco de dados
+    				  'usuario'	=> 'root',	   //Define usuario do banco de dados
+    				  'senha'	=> 'senha'	   //Define a senha do banco de dados
+					 )
 );
 
 /*
  * ---------------------
  * VÁRIAVEIS GLOBAIS
  * ---------------------
- * variaveis utilizadas dentro de classes e funções
+ * Variáveis utilizadas dentro de classes e funções
+ * Jovem - Se não sabe não mexe 
  */
 define('BASEPATH',FALSE);
 define('CSS_PATH','arquivos/css/');

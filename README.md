@@ -1,4 +1,4 @@
-SimplePHPCMS
+SobrinhoPHP
 ============
 
-Another CMS for PHP
+Se você riu sabe o que é.
