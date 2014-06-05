@@ -1,22 +1,28 @@
 <?php if ( ! defined('BASEPATH')) die('Acesso nao permitido :)');
 
-/* Classe para operações com banco de dados */
-Class Database {
 
-    var $dba;
-    var $usr;
-    var $pwd;
+
+/* Classe para operações com banco de dados */
+Class BancoDeDados {
+
+    
+    private $host;
+    private $banco;
+    private $usuario;
+    private $senha;
 
     /*
      * Método mágico __construct();
      */
     public function __construct(){
         //define váriaveis globais da classe
-        $this->host = 'localhost';//host | padrão 'localhost'
-        $this->dtbs = 'db_nome';  //banaco de dados | nome do banco
-        $this->user = 'root';     //usuário banco de dados mysql
-        $this->pswd = '';         //senha do banco, se não houver senha deixar string vazia
+        $this->host    = $config['banco']['host'];    //host | padrão 'localhost'
+        $this->banco   = $config['banco']['banco'];   //banaco de dados | nome do banco
+        $this->usuario = $config['banco']['usuario']; //usuário banco de dados mysql
+        $this->senha   = $config['banco']['senha'];   //senha do banco, se não houver senha deixar string vazia
     }
+
+
     
     /*
      * Função conecta(); inicia uma conexão com o banco de dados
@@ -24,10 +30,10 @@ Class Database {
     public function conecta(){
         //tenta conexão com mysql
         if ($conn = mysql_connect($this->host, 
-                                  $this->user, 
-                                  $this->pswd)){
+                                  $this->usuario, 
+                                  $this->senha)){
             //tenta conexão com banco
-            if (mysql_select_db($this->dtbs, $conn)) {
+            if (mysql_select_db($this->banco, $conn)) {
                 return TRUE;
             } else {
                 return FALSE;
@@ -41,9 +47,9 @@ Class Database {
         if (!isset($string))
             die(false);
         //tenta conexão com mysql
-        if ($conn = mysql_connect($this->host, $this->user, $this->pswd)) {
+        if ($conn = mysql_connect($this->host, $this->usuario, $this->senha)) {
             //tenta consulta no banco
-            if (mysql_select_db($this->dtbs, $conn)) {
+            if (mysql_select_db($this->banco, $conn)) {
                 if ($result = mysql_query($string, $conn)) {
                     $obj = array();
                    while($row = mysql_fetch_array($result)) {
