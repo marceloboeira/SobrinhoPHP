@@ -59,19 +59,19 @@ function cria_galeria(){
     if (func_num_args() > 0) {
         $args = func_get_args();
         $str = "<!-- IMAGENS --><style>.carousel .item {width: 100%;max-height: 600px;}.carousel .item img {width: 100%;}.carousel .carousel-control {background: none;border: none;top: 50%;}@media (max-width: 767px) {.block {margin-left: -20px;margin-right: -20px;}}</style>\n";
-        $str = "<div class='container'><section class='block'>\n
-                    <div id='".$hash."_slide' class='carousel slide'>\n
+        $str .= "<section class='block'>
+                    <div id='".$hash."_slide' class='carousel slide'>
                         <div class='carousel-inner'>\n";
         $count = 0;
         foreach ($args as $arg) {
             if (file_exists(IMG_PATH.$arg)) {
                 if($count++ == 0){
-                   $str .= "<div class='active item'>\n
-                <img src='".IMG_PATH.$arg."' alt='".$hash."_".$count."' />\n
+                   $str .= "<div class='active item'>
+                <img src='".IMG_PATH.$arg."' alt='".$hash."_".$count."' />
             </div>\n"; 
                 }else{
-                     $str .= "<div class='item'>\n
-                <img src='".IMG_PATH.$arg."' alt='".$hash."_".$count."' />\n
+                     $str .= "<div class='item'>
+                <img src='".IMG_PATH.$arg."' alt='".$hash."_".$count."' />
             </div>\n";
                 }
                 
@@ -80,10 +80,10 @@ function cria_galeria(){
             }
         }
         
-        $str .= "</div>\n
-        <a class='carousel-control left' href='#".$hash."_slide' data-slide='prev'><</a>\n
- <a class='carousel-control right' href='#".$hash."_slide' data-slide='next'>></a>\n
-    </div></div>\n
+        $str .= "</div>
+        <a class='carousel-control left' href='#".$hash."_slide' data-slide='prev'><i class='fa fa-caret-left'></i></a>
+ <a class='carousel-control right' href='#".$hash."_slide' data-slide='next'><i class='fa fa-caret-right'></i></a>
+    </div>
 </section>\n";
         echo $str . "<!-- IMAGENS -->\n";
     } else {

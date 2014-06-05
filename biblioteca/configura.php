@@ -31,4 +31,4 @@ define('JS_PATH','arquivos/js/');
 define('IMG_PATH','arquivos/img/');
 define('FONTS_PATH','arquivos/FONTS/');
 define('PAGE_PATH','paginas/');
-define('PAGE_DEFAULT','paginas/index.php');
+define('PAGE_DEFAULT','paginas/documentacao.php');
