@@ -2,9 +2,9 @@
 /*
  * Carrega Configurações, Classes e Funções - kidstuff
  */
-include('includes/configura.php');
-include('includes/bancodedados.php');
-include('includes/funcoes.php');
+include('biblioteca/configura.php');
+include('biblioteca/bancodedados.php');
+include('biblioteca/funcoes.php');
 ?>
 <!DOCTYPE html>
 <html>
