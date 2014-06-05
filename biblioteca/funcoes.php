@@ -53,3 +53,40 @@ function carrega_pagina(){
         include(PAGE_DEFAULT);
     }
 }
+
+function cria_galeria(){
+    $hash = md5(time());
+    if (func_num_args() > 0) {
+        $args = func_get_args();
+        $str = "<!-- IMAGENS --><style>.carousel .item {width: 100%;max-height: 600px;}.carousel .item img {width: 100%;}.carousel .carousel-control {background: none;border: none;top: 50%;}@media (max-width: 767px) {.block {margin-left: -20px;margin-right: -20px;}}</style>\n";
+        $str = "<div class='container'><section class='block'>\n
+                    <div id='".$hash."_slide' class='carousel slide'>\n
+                        <div class='carousel-inner'>\n";
+        $count = 0;
+        foreach ($args as $arg) {
+            if (file_exists(IMG_PATH.$arg)) {
+                if($count++ == 0){
+                   $str .= "<div class='active item'>\n
+                <img src='".IMG_PATH.$arg."' alt='".$hash."_".$count."' />\n
+            </div>\n"; 
+                }else{
+                     $str .= "<div class='item'>\n
+                <img src='".IMG_PATH.$arg."' alt='".$hash."_".$count."' />\n
+            </div>\n";
+                }
+                
+            } else {
+                $str .= "<!-- A imagem " . $arg . " não foi encontrada -->\n";
+            }
+        }
+        
+        $str .= "</div>\n
+        <a class='carousel-control left' href='#".$hash."_slide' data-slide='prev'><</a>\n
+ <a class='carousel-control right' href='#".$hash."_slide' data-slide='next'>></a>\n
+    </div></div>\n
+</section>\n";
+        echo $str . "<!-- IMAGENS -->\n";
+    } else {
+        echo "<!-- NENHUMA IMAGEM -->\n";
+    }
+}

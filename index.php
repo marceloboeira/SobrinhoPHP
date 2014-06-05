@@ -14,7 +14,7 @@ include('biblioteca/funcoes.php');
         <meta name="Description" content="<?php echo $config['descricao']; ?>">
         <?php
             carrega_estilos('bootstrap.min.css', 'font-awesome.min.css', 'animate.css');
-            carrega_scripts('bootstrap.min.js', 'jquery.min.js');
+            carrega_scripts('jquery.min.js','bootstrap.min.js');
         ?>
     </head>
     <body>
