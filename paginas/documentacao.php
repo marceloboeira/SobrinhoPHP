@@ -8,7 +8,7 @@
         color:rgb(155,155,155);
     }
 </style>
-<div class="well row">
+<div class="well row" >
     <div class="container">
         <div class="col-xs-2">
             <img class="col-xs-12" src="<?php echo IMG_PATH . 'logo.png'; ?>"/>
@@ -25,7 +25,8 @@
 
     </div>
 </div>
-<div class="container">
+<div class="col-xs-12">
+<div class="col-xs-offset-1 col-xs-7">
 
     <div class="row">
         <h2>Documentação
@@ -34,7 +35,7 @@
         </h2>
         <br />
         <hr />
-        <h3>Estrutura de arquivos</h3>
+        <h3  id="arquivos">Estrutura de arquivos</h3>
         <div class="col-xs-12 well">
             <table class="table table-condensed table-hover">
                 <tbody>
@@ -121,12 +122,12 @@
         <br />
         <br />
         <hr />
-        <h3> Funções 
+        <h2> Funções
             <br />
             <small>Funções e sua aplicação</small>
-        </h3>
+        </h2>
         <br />
-        <h4>cria_galeria()</h4>
+        <h3 id="galeria">Função cria_galeria()</h3>
         <p>Esta função recebe como parametro o(s) nome(s) da(s) imagem(s) que você deseja colocar na sua galeria carousel. Aceita uma ou mais imagens como parametro.</p>
         <p>As imagens escolhidas deverão estar dentro da pasta <b>arquivos/img/</b>, caso contrário elas não serão encontradas pela função. Exemplo:</p>
         <pre>
@@ -136,9 +137,38 @@
         </pre>
         <div>
            <?php
-                        cria_galeria('1.jpg','2.jpg','3.jpg');   
+              cria_galeria('1.jpg','2.jpg','3.jpg');
             ?>
         </div>
+
     </div>
 
 </div>
+<div class="col-xs-3" id="scroller" style="position:fixed;top:200px;right:20px">
+<div class="btn-group-vertical">
+<button class="btn btn-default" onclick="scrollPageTo('#arquivos', 10)"> Estrutura de Pastas</button>
+<button class="btn btn-default" onclick="scrollPageTo('#galeria', 10)"> Galeria de Imagens</button>
+</div>
+</div>
+</div>
+<script>
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 200) {
+        //$('#scroller').css('top', $(window).scrollTop());
+        $('#scroller').removeAttr('style').attr('style','position:fixed;top:50px;right:20px');
+    }else{
+      $('#scroller').removeAttr('style').attr('style','position:fixed;top:200px;right:20px');
+    }
+}
+);
+
+ function scrollPageTo(identifier, topPadding) {
+ if (topPadding == undefined) {
+topPadding = 0;
+ }
+ var moveTo = $(identifier).offset().top - topPadding;
+$('html, body').stop().animate({
+scrollTop: moveTo
+ }, 1000);
+ }
+</script>
