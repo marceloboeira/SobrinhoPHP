@@ -1,0 +1,10 @@
+{
+    "name": "vimia/SobrinhoPHP",
+    "description": "Framework que facilita a vida dos Sobrinhos, desenvolvendo sistemas/ferramentas eficientes para seus tios, avós e afins!",
+    "authors": [
+        {
+            "name": "Marvin Medeiros",
+            "email": "marvin.medeiros52@gmail.com"
+        }
+    ]
+}
