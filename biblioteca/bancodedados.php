@@ -5,7 +5,7 @@
 /* Classe para operações com banco de dados */
 Class BancoDeDados {
 
-    
+
     private $host;
     private $banco;
     private $usuario;
@@ -23,14 +23,14 @@ Class BancoDeDados {
     }
 
 
-    
+
     /*
      * Função conecta(); inicia uma conexão com o banco de dados
      */
     public function conecta(){
         //tenta conexão com mysql
-        if ($conn = mysql_connect($this->host, 
-                                  $this->usuario, 
+        if ($conn = mysql_connect($this->host,
+                                  $this->usuario,
                                   $this->senha)){
             //tenta conexão com banco
             if (mysql_select_db($this->banco, $conn)) {
@@ -42,7 +42,7 @@ Class BancoDeDados {
             return FALSE;
         }
     }
-    
+
    public function consulta($string = null) {
         if (!isset($string))
             die(false);
@@ -66,7 +66,7 @@ Class BancoDeDados {
             return FALSE;
         }
     }
-    
+
     /*
      * Exemplo de utilização:
      * $db = new Database();
@@ -74,9 +74,9 @@ Class BancoDeDados {
      * var_dump($db->consulta_aonde('tb_newsletter',array('nome'=>'maria','email'=>'maria@gmail.com')));
      */
     public function consulta_aonde($tb_name = null, $array_where = null){
-        
+
         if(isset($tb_name) && isset($array_where)){
-            
+
             $str = 'SELECT * FROM '.trim($tb_name).' WHERE ';
             $arr_control = 0;
             foreach($array_where as $chave => $valor){
@@ -87,13 +87,50 @@ Class BancoDeDados {
             }
             //return $str;die();
             return $this->consulta($str);
-            
+
         }else{
             return FALSE;
         }
     }
+
     
-    
+    /*
+     * Função insere();
+     * exemplo: $this->insere('tabela_x',array('nome'=>'joao','email'=>'joao@joao.com','idade'=>20));
+     */
+    public function insere($tabela = null, $arr_dados = null){
+        if(isset($tabela) && isset($arr_dados)){
+
+            if(!@$this->conecta()){
+                return FALSE;
+                die();
+            }
+            $str = 'INSERT INTO '.$tabela.' (';
+            $count_key = 0;
+            foreach($arr_dados as $key => $value){
+                if($count_key++ != 0){
+                    $str .= ', ';
+                }
+                $str .= ''.$key.'';
+            }
+            $str .= ') VALUES (';
+            $count_val = 0;
+            foreach($arr_dados as $key => $value){
+                if($count_val++ != 0){
+                    $str .= ', ';
+                }
+                $str .= '\''.$value.'\'';
+            }
+            $str .= ')';
+            if(@mysql_query($str)){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }else{
+            return FALSE;
+        }
+    }
 
 }
 
